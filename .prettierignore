@@ -1,0 +1,9 @@
+node_modules
+build
+dist
+.git
+.next
+out
+coverage
+*.lock
+*.cache
