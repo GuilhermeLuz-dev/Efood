@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { colors } from '../../style';
-import { TagContainer } from '../Tag/style';
 
 export const Card = styled.div`
   color: ${colors.white};
