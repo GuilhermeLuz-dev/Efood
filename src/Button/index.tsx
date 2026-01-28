@@ -1,4 +1,3 @@
-import { ButtonHTMLAttributes } from 'react';
 import { ButtonStyle } from './style';
 
 type Props = {
@@ -7,7 +6,7 @@ type Props = {
   type: 'button';
 };
 
-const Button = ({ children, onClick, type }: Props) => (
+const Button = ({ children, type }: Props) => (
   <ButtonStyle type={type}>{children}</ButtonStyle>
 );
 
