@@ -18,17 +18,37 @@ export const TagsContainer = styled.div`
 `;
 
 export const InfosContainer = styled.div`
-  position: relative;
-  margin-top: -4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
   padding: 8px;
+  margin-top: -4px;
   border: 1px solid ${colors.pink};
   border-top: none;
+  background-color: ${colors.white};
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  button {
+    padding: 4px 6px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: ${colors.pink};
+    color: ${colors.white};
+    text-align: center;
+    border: none;
+    cursor: pointer;
+  }
 `;
 
 export const Review = styled.div`
-  position: absolute;
-  top: 8px;
-  right: 8px;
   display: flex;
   gap: 8px;
   align-items: center;
@@ -37,9 +57,11 @@ export const Review = styled.div`
 export const CardTitle = styled.h3`
   font-size: 18px;
   font-weight: bold;
+  margin: 0;
 `;
 
 export const Description = styled.p`
   font-size: 14px;
+  line-height: 22px;
   margin: 16px 0;
 `;

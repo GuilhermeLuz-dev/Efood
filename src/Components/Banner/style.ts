@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../style';
+import { colors, Container } from '../../style';
 
 import bannerImage from '../../assets/images/la_doce.png';
 
@@ -18,11 +18,20 @@ export const BannerContainer = styled.div`
     background-color: rgba(0, 0, 0, 0.5); /* preto 50% */
     z-index: 1;
   }
+
+  h2 {
+    margin: 0;
+  }
+
+  ${Container} {
+    display: flex;
+    flex-direction: column;
+    gap: 156px;
+  }
 `;
 
 export const Category = styled.h2`
   font-weight: 100;
-  margin-bottom: 156.5px;
   position: relative;
   z-index: 2;
 `;
