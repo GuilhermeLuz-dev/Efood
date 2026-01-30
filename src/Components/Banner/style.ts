@@ -21,6 +21,7 @@ export const BannerContainer = styled.div`
 
   h2 {
     margin: 0;
+    font-size: 32px;
   }
 
   ${Container} {
