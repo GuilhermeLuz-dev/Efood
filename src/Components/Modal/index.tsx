@@ -24,7 +24,7 @@ const Modal = () => {
 
   const addToCart = () => {
     dispatch(addItem({ image, description, title, preco, id }));
-    dispatch(removeProductModal({ description, id, image, preco, title }));
+    dispatch(removeProductModal());
   };
 
   return (
@@ -33,11 +33,7 @@ const Modal = () => {
       <ModalContainer isShowingModal={isShowing}>
         <CloseIcon
           src={closeIcon}
-          onClick={() =>
-            dispatch(
-              removeProductModal({ description, id, image, preco, title })
-            )
-          }
+          onClick={() => dispatch(removeProductModal())}
         />
         <Image>
           <img src={modalImage} alt="" />
