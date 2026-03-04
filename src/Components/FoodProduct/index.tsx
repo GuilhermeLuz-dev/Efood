@@ -24,7 +24,7 @@ const FoodProduct = ({ description, image, title, preco, id }: Props) => {
     dispatch(addProductModal({ image, description, title, preco, id }));
   };
   const closeModal = () => {
-    dispatch(removeProductModal({ image, description, title, preco, id }));
+    dispatch(removeProductModal());
   };
 
   const getDescription = (description: string) => {

@@ -1,12 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useGetAllRestaurantsQuery } from '../../../services/api';
 
-import Food from '../../../Models/Food';
 import Banner from '../../Banner';
 import Header from '../../Header';
 import ProductsGrid from '../../ProductsGrid';
 
-import image from '../../../assets/images/marguerita.png';
 import CartDrawer from '../../CartDrawer';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';

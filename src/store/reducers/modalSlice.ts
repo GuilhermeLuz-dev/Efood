@@ -26,7 +26,7 @@ const modalSlice = createSlice({
       state.item = action.payload;
       state.isShowing = true;
     },
-    removeProductModal: (state, action: PayloadAction<ProductType>) => {
+    removeProductModal: (state) => {
       state.item = { description: '', id: 0, image: '', preco: 0, title: '' };
       state.isShowing = false;
     },
