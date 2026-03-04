@@ -18,7 +18,7 @@ const Profile = () => {
   if (!data) return <h2>Carregando...</h2>;
 
   const currentRestaurant = data.find(
-    (restaurant) => restaurant.id == Number(id)
+    (restaurant) => restaurant.id === Number(id)
   );
   if (!currentRestaurant) return <h2>Carregando...</h2>;
 
