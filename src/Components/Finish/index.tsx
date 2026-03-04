@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { Button, FormTitle } from '../../style';
 import { FinishContainer } from './style';
-import { closeCartDrawer, goToCartList } from '../../store/cartSlice';
+import { closeCartDrawer, goToCartList } from '../../store/reducers/cartSlice';
 
 const Finish = () => {
   const dispatch = useDispatch();

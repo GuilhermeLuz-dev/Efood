@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { colors, Container } from '../../style';
 
-import bannerImage from '../../assets/images/la_doce.png';
+import { Props } from '.';
 
-export const BannerContainer = styled.div`
+export const BannerContainer = styled.div<Omit<Props, 'title' | 'category'>>`
   position: relative;
   padding: 25px 0 32px 0;
-  background-image: url(${bannerImage});
+  background-image: url(${(props) => (props ? props.image : '')});
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   color: ${colors.white};
   font-size: 32px;
   &::before {

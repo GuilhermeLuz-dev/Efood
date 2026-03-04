@@ -10,7 +10,7 @@ import {
 } from './style';
 
 import lixeira from '../../assets/images/lixeira.svg';
-import { removeItem, goToFormAndress } from '../../store/cartSlice';
+import { removeItem, goToFormAndress } from '../../store/reducers/cartSlice';
 
 const CartDrawer = () => {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { DrawerContainer, Overlay } from './style';
 
-import { closeCartDrawer } from '../../store/cartSlice';
+import { closeCartDrawer } from '../../store/reducers/cartSlice';
 import CartList from '../CartList';
 import FormAndress from '../FormAndress';
 import FormPayment from '../FormPayment';

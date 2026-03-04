@@ -26,6 +26,8 @@ module.exports = [
         document: 'readonly',
         HTMLElement: 'readonly',
         window: 'readonly',
+        Restaurant: 'readonly',
+        Food: 'readonly',
       },
     },
     plugins: {

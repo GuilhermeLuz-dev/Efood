@@ -4,8 +4,11 @@ import { colors } from '../../style';
 export const Card = styled.div`
   position: relative;
   color: ${colors.pink};
+  height: 424px;
   img {
+    max-height: 217px;
     width: 100%;
+    object-fit: cover;
   }
 `;
 
@@ -21,12 +24,12 @@ export const InfosContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 180px;
   padding: 8px;
   margin-top: -4px;
   border: 1px solid ${colors.pink};
   border-top: none;
   background-color: ${colors.white};
+  height: 207px;
   div {
     display: flex;
     justify-content: space-between;

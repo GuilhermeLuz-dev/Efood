@@ -1,6 +1,6 @@
 import { Button } from '../../style';
-import { removeProductModal } from '../../store/modalSlice';
-import { addItem } from '../../store/cartSlice';
+import { removeProductModal } from '../../store/reducers/modalSlice';
+import { addItem } from '../../store/reducers/cartSlice';
 import {
   ModalContainer,
   Image,
@@ -22,6 +22,11 @@ const Modal = () => {
   );
   const dispatch = useDispatch();
 
+  const addToCart = () => {
+    dispatch(addItem({ image, description, title, preco, id }));
+    dispatch(removeProductModal({ description, id, image, preco, title }));
+  };
+
   return (
     <>
       <OverLay isShowingModal={isShowing} />
@@ -41,14 +46,7 @@ const Modal = () => {
           <ModalTitle>{title}</ModalTitle>
           <Description>{description}</Description>
           <p>Serve: de 2 a 3 pessoas</p>
-          <Button
-            onClick={() => {
-              dispatch(addItem({ description, id, image, preco, title }));
-              dispatch(
-                removeProductModal({ description, id, image, preco, title })
-              );
-            }}
-          >
+          <Button onClick={addToCart}>
             Adicionar ao carrinho - R$ {preco}
           </Button>
         </div>

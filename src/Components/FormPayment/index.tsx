@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { goToFormAndress, goToFinish } from '../../store/cartSlice';
+import { goToFormAndress, goToFinish } from '../../store/reducers/cartSlice';
 import { FormTitle } from '../../style';
 import { ButtonContainer, Form, InputContainer } from './style';
 

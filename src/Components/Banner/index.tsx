@@ -1,11 +1,17 @@
 import { Container } from '../../style';
 import { BannerContainer, Category, Title } from './style';
 
-const Banner = () => (
-  <BannerContainer>
+export type Props = {
+  category: string;
+  title: string;
+  image: string;
+};
+
+const Banner = ({ category, image, title }: Props) => (
+  <BannerContainer image={image}>
     <Container>
-      <Category>Italiana</Category>
-      <Title>La Dolce Vita Trattoria</Title>
+      <Category>{category}</Category>
+      <Title>{title}</Title>
     </Container>
   </BannerContainer>
 );

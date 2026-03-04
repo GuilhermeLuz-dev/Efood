@@ -5,6 +5,8 @@ export const Card = styled.div`
   color: ${colors.white};
   background-color: ${colors.pink};
   padding: 8px;
+  display: flex;
+  flex-direction: column;
   img {
     width: 100%;
     height: 100%;
@@ -16,9 +18,11 @@ export const Card = styled.div`
 export const CardTitle = styled.h3`
   font-size: 18px;
   font-weight: bold;
+  margin: 8px 0;
 `;
 
 export const Description = styled.p`
   font-size: 14px;
-  margin: 16px 0;
+  margin: 0 0 8px 0;
+  flex-grow: 1;
 `;

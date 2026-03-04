@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
-import { openCartDrawer } from '../../store/cartSlice';
+import { openCartDrawer } from '../../store/reducers/cartSlice';
 
 import { Container } from '../../style';
 import { HeaderContainer } from './style';

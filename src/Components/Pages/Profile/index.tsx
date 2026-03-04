@@ -1,3 +1,6 @@
+import { useParams } from 'react-router-dom';
+import { useGetAllRestaurantsQuery } from '../../../services/api';
+
 import Food from '../../../Models/Food';
 import Banner from '../../Banner';
 import Header from '../../Header';
@@ -8,71 +11,39 @@ import CartDrawer from '../../CartDrawer';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import Modal from '../../Modal';
-
-const products: Food[] = [
-  {
-    id: 1,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: image,
-    link: '/',
-    title: 'Pizza Marguerita',
-    preco: 60.9,
-  },
-  {
-    id: 2,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: image,
-    link: '/',
-    title: 'Pizza Marguerita',
-    preco: 90.5,
-  },
-  {
-    id: 3,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: image,
-    link: '/',
-    title: 'Pizza Marguerita',
-    preco: 40.5,
-  },
-  {
-    id: 4,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: image,
-    link: '/',
-    title: 'Pizza Marguerita',
-    preco: 30.5,
-  },
-  {
-    id: 5,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: image,
-    link: '/',
-    title: 'Pizza Marguerita',
-    preco: 90.5,
-  },
-  {
-    id: 6,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: image,
-    link: '/',
-    title: 'Pizza Marguerita',
-    preco: 90.5,
-  },
-];
+import FoodProduct from '../../FoodProduct';
 
 const Profile = () => {
   const isOpen = useSelector((state: RootState) => state.cart.isOpen);
+  const { id } = useParams();
+  const { data } = useGetAllRestaurantsQuery();
+  if (!data) return <h2>Carregando...</h2>;
+
+  const currentRestaurant = data.find(
+    (restaurant) => restaurant.id == Number(id)
+  );
+  if (!currentRestaurant) return <h2>Carregando...</h2>;
+
   return (
     <>
       <Header />
-      <Banner />
-      <ProductsGrid products={products} profile={true} />
+      <Banner
+        image={currentRestaurant.capa}
+        category={currentRestaurant.tipo}
+        title={currentRestaurant.titulo}
+      />
+      <ProductsGrid profile={true}>
+        {currentRestaurant.cardapio.map((product, index) => (
+          <FoodProduct
+            description={product.descricao}
+            title={product.nome}
+            image={product.foto}
+            id={product.id}
+            preco={product.preco}
+            key={index}
+          />
+        ))}
+      </ProductsGrid>
       <CartDrawer isOpen={isOpen} />
       <Modal />
     </>
