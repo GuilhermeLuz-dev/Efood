@@ -10,7 +10,6 @@ import {
   CloseIcon,
 } from './stye';
 
-import modalImage from '../../assets/images/la_doce.png';
 import closeIcon from '../../assets/images/close.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
@@ -36,7 +35,7 @@ const Modal = () => {
           onClick={() => dispatch(removeProductModal())}
         />
         <Image>
-          <img src={modalImage} alt="" />
+          <img src={image} alt="" />
         </Image>
         <div>
           <ModalTitle>{title}</ModalTitle>
