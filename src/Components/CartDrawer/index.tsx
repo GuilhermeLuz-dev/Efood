@@ -10,7 +10,6 @@ import FormAddress from '../FormAndress';
 import FormPayment from '../FormPayment';
 import Finish from '../Finish';
 import { usePurchaseMutation } from '../../services/api';
-import { useEffect } from 'react';
 
 export type Props = {
   isOpen: boolean;
