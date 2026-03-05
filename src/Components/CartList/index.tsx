@@ -46,7 +46,7 @@ const CartDrawer = () => {
           </CartDrawerList>
           <TotalValue>
             <p>Valor total</p>
-            <span>R$ {getTotalPrice(items)}</span>
+            <span>R$ {getTotalPrice(items).toFixed(2)}</span>
           </TotalValue>
           <CallToAction onClick={() => dispatch(goToFormAndress())}>
             Continuar com a entrega
