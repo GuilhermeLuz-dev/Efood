@@ -88,3 +88,10 @@ export const CallToAction = styled.button`
   border: none;
   cursor: pointer;
 `;
+
+export const EmptyCart = styled.p`
+  color: ${colors.white};
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+`;
