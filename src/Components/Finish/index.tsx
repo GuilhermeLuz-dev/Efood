@@ -1,13 +1,27 @@
+import { FormikProps } from 'formik';
 import { useDispatch } from 'react-redux';
-import { Button, FormTitle } from '../../style';
-import { FinishContainer } from './style';
-import { closeCartDrawer, goToCartList } from '../../store/reducers/cartSlice';
 
-const Finish = () => {
+import { CheckoutFormValues } from '../CartDrawer';
+import { Button, FormTitle } from '../../style';
+import { PurchaseProps, usePurchaseMutation } from '../../services/api';
+
+import {
+  clearCart,
+  closeCartDrawer,
+  goToCartList,
+} from '../../store/reducers/cartSlice';
+
+import { FinishContainer } from './style';
+
+type Props = {
+  data: PurchaseProps;
+};
+
+const Finish = ({ data }: Props) => {
   const dispatch = useDispatch();
   return (
     <FinishContainer>
-      <FormTitle>Pedido Realizado - 93749394</FormTitle>
+      <FormTitle>Pedido Realizado - {data.orderId}</FormTitle>
       <p>
         Estamos felizes em informar que seu pedido já está em processo de
         preparação e, em breve, será entregue no endereço fornecido.
@@ -28,6 +42,7 @@ const Finish = () => {
         onClick={() => {
           dispatch(closeCartDrawer());
           dispatch(goToCartList());
+          dispatch(clearCart());
         }}
       >
         Concluir

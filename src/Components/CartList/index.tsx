@@ -11,7 +11,7 @@ import {
 } from './style';
 
 import lixeira from '../../assets/images/lixeira.svg';
-import { removeItem, goToFormAndress } from '../../store/reducers/cartSlice';
+import { removeItem, goToFormAddress } from '../../store/reducers/cartSlice';
 import { getTotalPrice } from '../../utils';
 
 const CartDrawer = () => {
@@ -48,7 +48,7 @@ const CartDrawer = () => {
             <p>Valor total</p>
             <span>R$ {getTotalPrice(items).toFixed(2)}</span>
           </TotalValue>
-          <CallToAction onClick={() => dispatch(goToFormAndress())}>
+          <CallToAction onClick={() => dispatch(goToFormAddress())}>
             Continuar com a entrega
           </CallToAction>
         </>

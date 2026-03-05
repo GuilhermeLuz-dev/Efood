@@ -31,14 +31,17 @@ const cartSlice = createSlice({
     removeItem: (state, action: PayloadAction<ProductType>) => {
       state.items = state.items.filter((item) => item.id !== action.payload.id);
     },
+    clearCart: (state) => {
+      state.items = [];
+    },
     closeCartDrawer: (state) => {
       state.isOpen = false;
     },
     openCartDrawer: (state) => {
       state.isOpen = true;
     },
-    goToFormAndress: (state) => {
-      state.step = 'formAndress';
+    goToFormAddress: (state) => {
+      state.step = 'formAddress';
     },
     goToFormPayment: (state) => {
       state.step = 'formPayment';
@@ -57,9 +60,10 @@ export const {
   removeItem,
   closeCartDrawer,
   openCartDrawer,
-  goToFormAndress,
+  goToFormAddress,
   goToFormPayment,
   goToCartList,
   goToFinish,
+  clearCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

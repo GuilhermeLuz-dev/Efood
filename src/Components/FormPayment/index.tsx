@@ -1,42 +1,96 @@
-import { useDispatch } from 'react-redux';
-import { goToFormAndress, goToFinish } from '../../store/reducers/cartSlice';
-import { FormTitle } from '../../style';
-import { ButtonContainer, Form, InputContainer } from './style';
+import { FormikProps } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 
-const FormPayment = () => {
+import { FormTitle } from '../../style';
+
+import { RootState } from '../../store';
+import { goToFormAddress, goToFinish } from '../../store/reducers/cartSlice';
+
+import { ButtonContainer, Form, InputContainer } from './style';
+import { CheckoutFormValues } from '../CartDrawer';
+import { getTotalPrice } from '../../utils';
+
+type Props = {
+  form: FormikProps<CheckoutFormValues>;
+};
+
+const FormPayment = ({ form }: Props) => {
+  const items = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
   return (
     <>
-      <FormTitle>Pagamento</FormTitle>
-      <Form action="">
-        <label htmlFor="">Nome no cartão</label>
-        <input type="text" placeholder="nome:" />
+      <FormTitle>Pagamento - Valor a pagar R$ {getTotalPrice(items)}</FormTitle>
+      <Form onSubmit={form.handleSubmit}>
+        <label htmlFor="cardName">Nome no cartão</label>
+        <input
+          id="cardName"
+          type="name"
+          name="cardName"
+          placeholder="nome:"
+          value={form.values.cardName}
+          onChange={form.handleChange}
+          onBlur={form.handleBlur}
+        />
         <InputContainer>
           <div>
-            <label htmlFor="">Número do cartão</label>
-            <input type="number" />
+            <label htmlFor="cardNumber">Número do cartão</label>
+            <input
+              id="cardNumber"
+              name="cardNumber"
+              type="number"
+              value={form.values.cardNumber}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+            />
           </div>
           <div>
-            <label htmlFor="">CVV</label>
-            <input type="number" />
+            <label htmlFor="cardCode">CVV</label>
+            <input
+              id="cardCode"
+              name="cardCode"
+              type="number"
+              value={form.values.cardCode}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+            />
           </div>
         </InputContainer>
         <InputContainer>
           <div>
-            <label htmlFor="">Mês de vencimento</label>
-            <input type="number" />
+            <label htmlFor="expiresMonth">Mês de vencimento</label>
+            <input
+              id="expiresMonth"
+              name="expiresMonth"
+              type="number"
+              value={form.values.expiresMonth}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+            />
           </div>
           <div>
-            <label htmlFor="">Ano de vencimento</label>
-            <input type="number" />
+            <label htmlFor="expiresYear">Ano de vencimento</label>
+            <input
+              id="expiresYear"
+              name="expiresYear"
+              type="number"
+              value={form.values.expiresYear}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+            />
           </div>
         </InputContainer>
       </Form>
       <ButtonContainer>
-        <button onClick={() => dispatch(goToFinish())}>
+        <button
+          type="submit"
+          onClick={() => {
+            form.handleSubmit();
+            dispatch(goToFinish());
+          }}
+        >
           Finalizar pagamento
         </button>
-        <button onClick={() => dispatch(goToFormAndress())}>
+        <button onClick={() => dispatch(goToFormAddress())}>
           Voltar para edição de endereço
         </button>
       </ButtonContainer>
