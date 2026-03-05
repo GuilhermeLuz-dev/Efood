@@ -1,9 +1,7 @@
-import { FormikProps } from 'formik';
 import { useDispatch } from 'react-redux';
 
-import { CheckoutFormValues } from '../CartDrawer';
 import { Button, FormTitle } from '../../style';
-import { PurchaseProps, usePurchaseMutation } from '../../services/api';
+import { PurchaseProps } from '../../services/api';
 
 import {
   clearCart,
