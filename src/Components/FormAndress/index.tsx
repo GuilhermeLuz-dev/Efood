@@ -62,7 +62,6 @@ const FormAddress = ({ form }: Props) => {
         <input
           id="fullName"
           type="name"
-          placeholder="nome:"
           value={form.values.fullName}
           onChange={form.handleChange}
           onBlur={form.handleBlur}
@@ -73,7 +72,6 @@ const FormAddress = ({ form }: Props) => {
           id="address"
           name="address"
           type="text"
-          placeholder="nome:"
           value={form.values.address}
           onChange={form.handleChange}
           onBlur={form.handleBlur}
