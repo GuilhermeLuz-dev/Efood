@@ -62,7 +62,7 @@ const CartDrawer = ({ isOpen }: Props) => {
         .min(9, 'O cep deve ter no mínimo 8 digitos')
         .max(9, 'O cep deve ter no máximo 8 digitos')
         .required('Esse campo é obrigatório'),
-      number: Yup.string().min(1).required('Esse campo é obrigatório'),
+      number: Yup.number().min(1).required('Esse campo é obrigatório'),
       complement: Yup.string(),
       cardName: Yup.string()
         .min(5, 'O campo precisa ter o mínimo de 5 caracteres')
