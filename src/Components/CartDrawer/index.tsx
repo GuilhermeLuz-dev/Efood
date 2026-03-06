@@ -23,9 +23,9 @@ export interface CheckoutFormValues {
   complement: string;
   cardName: string;
   cardNumber: string;
-  cardCode: number;
-  expiresMonth: number;
-  expiresYear: number;
+  cardCode: string;
+  expiresMonth: string;
+  expiresYear: string;
 }
 
 const CartDrawer = ({ isOpen }: Props) => {
@@ -44,9 +44,9 @@ const CartDrawer = ({ isOpen }: Props) => {
       complement: '',
       cardName: '',
       cardNumber: '',
-      cardCode: 0,
-      expiresMonth: 0,
-      expiresYear: 0,
+      cardCode: '',
+      expiresMonth: '',
+      expiresYear: '',
     },
     validationSchema: Yup.object({
       fullName: Yup.string()
@@ -62,14 +62,17 @@ const CartDrawer = ({ isOpen }: Props) => {
         .min(9, 'O cep deve ter no mínimo 8 digitos')
         .max(9, 'O cep deve ter no máximo 8 digitos')
         .required('Esse campo é obrigatório'),
-      number: Yup.number().min(1).required('Esse campo é obrigatório'),
+      number: Yup.string().min(1).required('Esse campo é obrigatório'),
       complement: Yup.string(),
       cardName: Yup.string()
         .min(5, 'O campo precisa ter o mínimo de 5 caracteres')
         .required('Esse campo é obrigatório'),
-      cardCode: Yup.number().required('Esse campo é obrigatório'),
-      expiresMonth: Yup.number().required('Esse campo é obrigatório'),
-      expiresYear: Yup.number().required('Esse campo é obrigatório'),
+      cardNumber: Yup.string()
+        .min(19, 'O campo precisa ter o mínimo de 16 caracteres')
+        .required('Esse campo é obrigatório'),
+      cardCode: Yup.string().min(3).required('Esse campo é obrigatório'),
+      expiresMonth: Yup.number().min(2).required('Esse campo é obrigatório'),
+      expiresYear: Yup.number().min(2).required('Esse campo é obrigatório'),
     }),
     onSubmit: (values) => {
       purchase({
@@ -107,6 +110,7 @@ const CartDrawer = ({ isOpen }: Props) => {
     if (isSuccess) {
       reset();
       dispatch(clearCart());
+      form.resetForm();
     }
   };
 
@@ -115,7 +119,7 @@ const CartDrawer = ({ isOpen }: Props) => {
       <Overlay isOpen={isOpen} onClick={handleFinish} />
       <DrawerContainer isOpen={isOpen}>
         {isSuccess && data ? (
-          <Finish data={data} reset={reset} />
+          <Finish data={data} reset={reset} formReset={form.resetForm} />
         ) : (
           <>
             {step === 'cartList' && <CartList />}

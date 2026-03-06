@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { FormikProps } from 'formik';
+import { IMaskInput } from 'react-imask';
 
 import { CheckoutFormValues } from '../CartDrawer';
 import { FormTitle } from '../../style';
@@ -23,16 +24,35 @@ const FormAddress = ({ form }: Props) => {
     return hasError;
   };
 
-  const validateForm = () => {
-    const formValid = !!(
-      form.errors['fullName'] ||
-      form.errors['address'] ||
-      form.errors['city'] ||
-      form.errors['cep'] ||
-      form.errors['number']
+  const handleContinue = async () => {
+    const errors = await form.validateForm();
+
+    const hasErrors = !!(
+      errors.fullName ||
+      errors.address ||
+      errors.city ||
+      errors.cep ||
+      errors.number
     );
 
-    return !formValid;
+    const isMissingFields =
+      !form.values.fullName ||
+      !form.values.address ||
+      !form.values.city ||
+      !form.values.cep ||
+      !form.values.number;
+
+    if (!hasErrors && !isMissingFields) {
+      dispatch(goToFormPayment());
+    } else {
+      form.setTouched({
+        fullName: true,
+        address: true,
+        city: true,
+        cep: true,
+        number: true,
+      });
+    }
   };
   return (
     <>
@@ -72,7 +92,7 @@ const FormAddress = ({ form }: Props) => {
         <InputContainer>
           <div>
             <label htmlFor="cep">CEP</label>
-            <input
+            <IMaskInput
               id="cep"
               name="cep"
               type="text"
@@ -80,6 +100,7 @@ const FormAddress = ({ form }: Props) => {
               onChange={form.handleChange}
               onBlur={form.handleBlur}
               className={checkInputHasError('cep') ? 'error' : ''}
+              mask="00000-000"
             />
           </div>
           <div>
@@ -107,14 +128,7 @@ const FormAddress = ({ form }: Props) => {
         />
       </Form>
       <ButtonContainer>
-        <button
-          onClick={() => {
-            dispatch(goToFormPayment());
-          }}
-          disabled={validateForm() ? false : true}
-        >
-          Continuar com o pagamento
-        </button>
+        <button onClick={handleContinue}>Continuar com o pagamento</button>
         <button onClick={() => dispatch(goToCartList())}>
           Voltar para o carrinho
         </button>

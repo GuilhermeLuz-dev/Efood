@@ -25,10 +25,10 @@ type PurchasePayload = {
     card: {
       name: string;
       number: string;
-      code: number;
+      code: string;
       expires: {
-        month: number;
-        year: number;
+        month: string;
+        year: string;
       };
     };
   };

@@ -10,14 +10,16 @@ import { FinishContainer } from './style';
 type Props = {
   data: PurchaseProps;
   reset: () => void;
+  formReset: () => void;
 };
 
-const Finish = ({ data, reset }: Props) => {
+const Finish = ({ data, reset, formReset }: Props) => {
   const dispatch = useDispatch();
 
   const handleFinish = () => {
     dispatch(closeCartDrawer());
     dispatch(clearCart());
+    formReset();
     reset();
   };
 
