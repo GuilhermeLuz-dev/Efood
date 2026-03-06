@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
-import { openCartDrawer } from '../../store/reducers/cartSlice';
+import { goToCartList, openCartDrawer } from '../../store/reducers/cartSlice';
 
 import { Container } from '../../style';
 import { HeaderContainer } from './style';
@@ -20,7 +20,12 @@ const Header = () => {
         <Link to="/">
           <img src={logo} alt="Logo" />
         </Link>
-        <p onClick={() => dispatch(openCartDrawer())}>
+        <p
+          onClick={() => {
+            dispatch(openCartDrawer());
+            dispatch(goToCartList());
+          }}
+        >
           {items.length} produto(s) no carrinho
         </p>
       </Container>

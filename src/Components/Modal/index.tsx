@@ -1,6 +1,6 @@
 import { Button } from '../../style';
 import { removeProductModal } from '../../store/reducers/modalSlice';
-import { addItem } from '../../store/reducers/cartSlice';
+import { addItem, goToCartList } from '../../store/reducers/cartSlice';
 import {
   ModalContainer,
   Image,
@@ -24,6 +24,7 @@ const Modal = () => {
   const addToCart = () => {
     dispatch(addItem({ image, description, title, preco, id }));
     dispatch(removeProductModal());
+    dispatch(goToCartList());
   };
 
   return (

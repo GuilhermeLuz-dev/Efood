@@ -4,7 +4,7 @@ import { DrawerContainer, Overlay } from './style';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { closeCartDrawer, goToCartList } from '../../store/reducers/cartSlice';
+import { clearCart, closeCartDrawer } from '../../store/reducers/cartSlice';
 import CartList from '../CartList';
 import FormAddress from '../FormAndress';
 import FormPayment from '../FormPayment';
@@ -32,7 +32,7 @@ const CartDrawer = ({ isOpen }: Props) => {
   const step = useSelector((state: RootState) => state.cart.step);
   const items = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
-  const [purchase, { data, isSuccess }] = usePurchaseMutation();
+  const [purchase, { data, isSuccess, reset }] = usePurchaseMutation();
 
   const form = useFormik<CheckoutFormValues>({
     initialValues: {
@@ -105,18 +105,19 @@ const CartDrawer = ({ isOpen }: Props) => {
     },
   });
 
+  const handleFinish = () => {
+    dispatch(closeCartDrawer());
+    if (isSuccess) {
+      reset();
+      dispatch(clearCart());
+    }
+  };
   return (
     <>
-      <Overlay
-        isOpen={isOpen}
-        onClick={() => {
-          dispatch(closeCartDrawer());
-          dispatch(goToCartList());
-        }}
-      />
+      <Overlay isOpen={isOpen} onClick={handleFinish} />
       <DrawerContainer isOpen={isOpen}>
         {isSuccess && data ? (
-          <Finish data={data} />
+          <Finish data={data} reset={reset} />
         ) : (
           <>
             {step === 'cartList' && <CartList />}

@@ -13,10 +13,18 @@ import { FinishContainer } from './style';
 
 type Props = {
   data: PurchaseProps;
+  reset: () => void;
 };
 
-const Finish = ({ data }: Props) => {
+const Finish = ({ data, reset }: Props) => {
   const dispatch = useDispatch();
+
+  const handleFinish = () => {
+    dispatch(closeCartDrawer());
+    dispatch(clearCart());
+    reset();
+  };
+
   return (
     <FinishContainer>
       <FormTitle>Pedido Realizado - {data.orderId}</FormTitle>
@@ -36,15 +44,7 @@ const Finish = ({ data }: Props) => {
         Esperamos que desfrute de uma deliciosa e agradável experiência
         gastronômica. Bom apetite!
       </p>
-      <Button
-        onClick={() => {
-          dispatch(closeCartDrawer());
-          dispatch(goToCartList());
-          dispatch(clearCart());
-        }}
-      >
-        Concluir
-      </Button>
+      <Button onClick={handleFinish}>Concluir</Button>
     </FinishContainer>
   );
 };
