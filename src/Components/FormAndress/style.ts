@@ -10,9 +10,13 @@ export const Form = styled.form`
   input {
     padding: 8px;
     background-color: ${colors.lightPink};
-    border: none;
+    border: 2px solid ${colors.lightPink};
     margin: 8px 0;
+    &.error {
+      border-color: #ff0000;
+    }
   }
+
   label {
     font-size: 14px;
   }

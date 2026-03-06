@@ -3,11 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Button, FormTitle } from '../../style';
 import { PurchaseProps } from '../../services/api';
 
-import {
-  clearCart,
-  closeCartDrawer,
-  goToCartList,
-} from '../../store/reducers/cartSlice';
+import { clearCart, closeCartDrawer } from '../../store/reducers/cartSlice';
 
 import { FinishContainer } from './style';
 

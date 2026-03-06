@@ -17,6 +17,16 @@ type Props = {
 const FormPayment = ({ form }: Props) => {
   const items = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
+
+  const checkInputHasError = (fildName: string) => {
+    const isTouched = fildName in form.touched;
+    const isError = fildName in form.errors;
+
+    const hasError = isError && isTouched;
+
+    return hasError;
+  };
+
   return (
     <>
       <FormTitle>Pagamento - Valor a pagar R$ {getTotalPrice(items)}</FormTitle>
@@ -30,6 +40,7 @@ const FormPayment = ({ form }: Props) => {
           value={form.values.cardName}
           onChange={form.handleChange}
           onBlur={form.handleBlur}
+          className={checkInputHasError('cardName') ? 'error' : ''}
         />
         <InputContainer>
           <div>
@@ -41,6 +52,7 @@ const FormPayment = ({ form }: Props) => {
               value={form.values.cardNumber}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('cardNumber') ? 'error' : ''}
             />
           </div>
           <div>
@@ -52,6 +64,7 @@ const FormPayment = ({ form }: Props) => {
               value={form.values.cardCode}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('cardCode') ? 'error' : ''}
             />
           </div>
         </InputContainer>
@@ -65,6 +78,7 @@ const FormPayment = ({ form }: Props) => {
               value={form.values.expiresMonth}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('expiresMonth') ? 'error' : ''}
             />
           </div>
           <div>
@@ -76,6 +90,7 @@ const FormPayment = ({ form }: Props) => {
               value={form.values.expiresYear}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('expiresYear') ? 'error' : ''}
             />
           </div>
         </InputContainer>

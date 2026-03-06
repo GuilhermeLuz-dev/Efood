@@ -13,6 +13,27 @@ type Props = {
 };
 const FormAddress = ({ form }: Props) => {
   const dispatch = useDispatch();
+
+  const checkInputHasError = (fildName: string) => {
+    const isTouched = fildName in form.touched;
+    const isError = fildName in form.errors;
+
+    const hasError = isError && isTouched;
+
+    return hasError;
+  };
+
+  const validateForm = () => {
+    const formValid = !!(
+      form.errors['fullName'] ||
+      form.errors['address'] ||
+      form.errors['city'] ||
+      form.errors['cep'] ||
+      form.errors['number']
+    );
+
+    return !formValid;
+  };
   return (
     <>
       <FormTitle>Entrega</FormTitle>
@@ -25,6 +46,7 @@ const FormAddress = ({ form }: Props) => {
           value={form.values.fullName}
           onChange={form.handleChange}
           onBlur={form.handleBlur}
+          className={checkInputHasError('fullName') ? 'error' : ''}
         />
         <label htmlFor="address">Endereço</label>
         <input
@@ -35,6 +57,7 @@ const FormAddress = ({ form }: Props) => {
           value={form.values.address}
           onChange={form.handleChange}
           onBlur={form.handleBlur}
+          className={checkInputHasError('address') ? 'error' : ''}
         />
         <label htmlFor="city">Cidade</label>
         <input
@@ -44,6 +67,7 @@ const FormAddress = ({ form }: Props) => {
           value={form.values.city}
           onChange={form.handleChange}
           onBlur={form.handleBlur}
+          className={checkInputHasError('city') ? 'error' : ''}
         />
         <InputContainer>
           <div>
@@ -55,6 +79,7 @@ const FormAddress = ({ form }: Props) => {
               value={form.values.cep}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('cep') ? 'error' : ''}
             />
           </div>
           <div>
@@ -66,6 +91,7 @@ const FormAddress = ({ form }: Props) => {
               value={form.values.number}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('number') ? 'error' : ''}
             />
           </div>
         </InputContainer>
@@ -77,10 +103,16 @@ const FormAddress = ({ form }: Props) => {
           value={form.values.complement}
           onChange={form.handleChange}
           onBlur={form.handleBlur}
+          className={checkInputHasError('complement') ? 'error' : ''}
         />
       </Form>
       <ButtonContainer>
-        <button onClick={() => dispatch(goToFormPayment())}>
+        <button
+          onClick={() => {
+            dispatch(goToFormPayment());
+          }}
+          disabled={validateForm() ? false : true}
+        >
           Continuar com o pagamento
         </button>
         <button onClick={() => dispatch(goToCartList())}>
